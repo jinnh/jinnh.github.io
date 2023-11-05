@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Global Structure-Aware Diffusion Process for Low-Light Image Enhancement.">
+  <meta name="keywords" content="Low-Light Enhancement, Diffusion models">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GlobalDiff | Global Structure-Aware Diffusion Process</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<!-- <nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://keunhong.com">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://hypernerf.github.io">
+            HyperNeRF
+          </a>
+          <a class="navbar-item" href="https://nerfies.github.io">
+            Nerfies
+          </a>
+          <a class="navbar-item" href="https://latentfusion.github.io">
+            LatentFusion
+          </a>
+          <a class="navbar-item" href="https://photoshape.github.io">
+            PhotoShape
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav> -->
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Global Structure-Aware Diffusion Process for Low-light Image Enhancement</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              Jinhui Hou<sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=d1L0KkoAAAAJ&hl=en">Zhiyu Zhu</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://sites.google.com/site/junhuihoushomepage/biography">Junhui Hou</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              Hui Liu<sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=-QvoSUkAAAAJ&hl=en&oi=ao">Huanqiang Zeng</a><sup>3</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=u58FkyUAAAAJ&hl=en">Hui Yuan</a><sup>4</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>City University of Hong Kong,</span>
+            <span class="author-block"><sup>2</sup>Caritas Institute of Higher Education</span>
+            <span class="author-block"><sup>3</sup>Huaqiao University</span>
+            <span class="author-block"><sup>4</sup>Shandong University</span>
+          </div>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://nips.cc/">Advances in Neural Information Processing Systems, 2023</a></span>
+          </div>
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2310.17577.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2310.17577.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <!-- <span class="link-block">
+                <a href="https://www.youtube.com/watch?v=MrKrnHhk8IA"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span> -->
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/jinnh/GSAD"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- <section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/teaser.mp4"
+                type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered">
+        <span class="dnerf">Nerfies</span> turns selfie videos from your phone into
+        free-viewpoint
+        portraits.
+      </h2>
+    </div>
+  </div>
+</section> -->
+
+
+<!-- <section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/steve.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-chair-tp">
+          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/chair-tp.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-shiba">
+          <video poster="" id="shiba" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/shiba.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-fullbody">
+          <video poster="" id="fullbody" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/fullbody.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-blueshirt">
+          <video poster="" id="blueshirt" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/blueshirt.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-mask">
+          <video poster="" id="mask" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/mask.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-coffee">
+          <video poster="" id="coffee" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/coffee.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-toby">
+          <video poster="" id="toby" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/toby2.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <div class="row is-centered has-text-centered">
+      <div class="column">
+        <div class="row">
+          <iframe frameborder="10" class="juxtapose"  height="300" 
+            src="https://cdn.knightlab.com/libs/juxtapose/latest/embed/index.html?uid=d2c2589a-7b48-11ee-b5be-6595d9b17862"></iframe>
+          <iframe frameborder="0" class="juxtapose"  height="300" 
+            src="https://cdn.knightlab.com/libs/juxtapose/latest/embed/index.html?uid=840ea122-7b48-11ee-b5be-6595d9b17862"></iframe>
+        </div>
+        <div class="row">
+          <iframe frameborder="0" class="juxtapose"  height="300" 
+            src="https://cdn.knightlab.com/libs/juxtapose/latest/embed/index.html?uid=b92b885c-7b48-11ee-b5be-6595d9b17862"></iframe>
+          <iframe frameborder="0" class="juxtapose"  height="300"
+            src="https://cdn.knightlab.com/libs/juxtapose/latest/embed/index.html?uid=f4ad1ec6-7b44-11ee-b5be-6595d9b17862"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <div class="content has-text-centered">
+      <video id="replay-video"
+             controls
+             muted
+             preload
+             playsinline
+             width="75%">
+        <source src="./static/videos/low_light_video2.mp4"
+                type="video/mp4">
+      </video>
+    </div> 
+
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            This paper studies a diffusion-based framework to address the low-light image enhancement problem. 
+            To harness the capabilities of diffusion models, we delve into this intricate process and advocate 
+            for the regularization of its inherent ODE-trajectory. To be specific, inspired by the recent research 
+            that low curvature ODE-trajectory results in a stable and effective diffusion process, we formulate a 
+            curvature regularization term anchored in the intrinsic non-local structures of image data, i.e., 
+            global structure-aware regularization, which gradually facilitates the preservation of complicated details 
+            and the augmentation of contrast during the diffusion process. This incorporation mitigates the adverse 
+            effects of noise and artifacts resulting from the diffusion process, leading to a more precise and flexible 
+            enhancement. To additionally promote learning in challenging regions, we introduce an uncertainty-guided 
+            regularization technique, which wisely relaxes constraints on the most extreme regions of the image. 
+            Experimental evaluations reveal that the proposed diffusion-based framework, complemented by rank-informed 
+            regularization, attains distinguished performance in low-light enhancement. The outcomes indicate substantial 
+            advancements in image quality, noise suppression, and contrast amplification in comparison with state-of-the-art methods. 
+            We believe this innovative approach will stimulate further exploration and advancement in low-light image 
+            processing, with potential implications for other applications of diffusion models.
+          </p>
+         
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Paper method. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Method</h2>
+        <img src="https://github.com/jinnh/GSAD/blob/main/images/framework.png?raw=true"
+          class="interpolation-image"
+          alt="Interpolate start reference image."/>
+        <p>
+          Illustration of the training workflow of the proposed method.
+        </p>
+      </div>
+    </div>
+    <!--/ Paper results. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Results</h2>
+        <img src="https://github.com/jinnh/GSAD/blob/main/images/quantitative%20results.png?raw=true"
+        class="interpolation-image"
+        alt="Interpolate start reference image."/>
+        <p>
+          Quantitative results on LOLv1 and LOLv2.
+        </p>
+        <img src="https://github.com/jinnh/GSAD/blob/main/images/visual%20results.png?raw=true"
+          class="interpolation-image"
+          alt="Interpolate start reference image."/>
+        <p>
+          Visual results on LOLv1 and LOLv2.
+        </p>
+        <img src="./static/images/visual_unpaired.png"
+          class="interpolation-image"
+          alt="Interpolate start reference image."/>
+        <p>
+          Visual results on unpaired real low-light images.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>   @article{hou23global,
+      title={Global Structure-Aware Diffusion Process for Low-Light Image Enhancement},
+      author={Jinhui Hou, Zhiyu Zhu, Junhui Hou, Hui Liu, Huanqiang Zeng, and Hui Yuan},
+      journal={arXiv preprint arXiv:2310.17577},
+      year={2023}
+    }</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="./static/videos/nerfies_paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/jinnh/GSAD" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website, adapted from the following <a
+            href="https://github.com/nerfies/nerfies.github.io">source code</a>, is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
