@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Energy-oriented Diffusion Bridge for Image Restoration with Foundational Diffusion Models">
+  <meta name="keywords" content="Low-Light Enhancement, Diffusion models">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Consistency Geodesic Bridge</title>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro|Exo:100" rel="stylesheet">
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/icon.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  
+  <link rel="stylesheet" href="static/css/tab_gallery.css">
+  <link rel="stylesheet" href="static/css/juxtapose.css">
+  <link rel="stylesheet" href="static/css/image_card_fader.css">
+  <link rel="stylesheet" href="static/css/image_card_slider.css">
+
+  <style>
+    .pagination-dots {
+      text-align: center;
+      margin-top: 25px;
+    }
+    .dot {
+      cursor: pointer;
+      height: 15px;
+      width: 15px;
+      margin: 0 5px;
+      background-color: #bbb;
+      border-radius: 50%;
+      display: inline-block;
+      transition: background-color 0.6s ease;
+    }
+    .dot.active, .dot:hover {
+      background-color: #717171;
+    }
+    .tab_column img.selected {
+        border: 3px solid #3273dc;
+        box-shadow: 0 0 10px rgba(50, 115, 220, 0.5);
+    }
+    #juxtapose-embed {
+        margin-top: 20px;
+    }
+    .gallery-wrapper {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 0 15px;
+      box-sizing: border-box;
+    }
+    #juxtapose-embed {
+      width: 100%;
+      height: 600px;
+      margin: 20px 0 0 0;
+    }
+    #thumbnail-container {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 10px;
+      width: 100%;
+    }
+    .tab_column {
+      flex: 1;
+      min-width: 0;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .tab_column img {
+      width: 100%;
+      height: auto;
+      cursor: pointer;
+      border-radius: 5px;
+      border: 3px solid transparent;
+      transition: all 0.3s ease;
+      display: block;
+    }
+    .tab_column span {
+        margin-top: 5px;
+        font-size: 0.9em;
+    }
+    @media (max-width: 830px) {
+        #juxtapose-embed {
+            height: calc((100vw - 30px) * 0.75);
+            min-height: 250px;
+        }
+    }
+  </style>
+
+</head>
+
+<body>
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+
+          <h1 class="title is-1 publication-title">Energy-oriented Diffusion Bridge for Image Restoration with Foundational Diffusion Models</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://dblp.org/pid/213/4553.html">Jinhui Hou</a>,</span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=d1L0KkoAAAAJ&hl=en">Zhiyu Zhu</a>,</span>
+            <span class="author-block">
+              <a href="https://sites.google.com/site/junhuihoushomepage/biography">Junhui Hou</a>
+            </span>
+
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">City University of Hong Kong</span>
+          </div>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://iclr.cc/">International Conference on Learning Representations, 2026</a></span>
+          </div>
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://openreview.net/pdf?id=B9JHSksyox"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!--<span class="link-block">
+                <a href="https://openreview.net/pdf?id=B9JHSksyox"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span> -->
+              <span class="link-block">
+                <a href="https://github.com/jinnh"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<!--========================Showing results==============================-->
+<section class="hero is-small" id="gallery-section">
+  <div class="hero-body">
+    <div class="container is-max-desktop has-text-centered">
+      
+      <div class="gallery-wrapper">
+        <div class="tab_container">
+          <div id="juxtapose-embed" class="juxtapose">
+          </div>
+        </div>
+
+        <div id="thumbnail-container">
+        </div>
+      </div>
+      
+      <div id="pagination-dots" class="pagination-dots">
+      </div>
+    </div>
+  </div>
+</section>
+<!--========================Showing results==============================-->
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Diffusion bridge models have shown great promise in image restoration by explicitly connecting clean and degraded image distributions. However, they often rely on complex and high-cost trajectories, which limit both sampling efficiency and final restoration quality. To address this, we propose an Energy-oriented diffusion Bridge (E-Bridge) framework to construct a set of low-cost manifold geodesic trajectories to boost the performance of the proposed method. We achieve this by designing a novel bridge process that evolves over a shorter time horizon and makes the reverse process start from an entropy-regularized point that mixes the degraded image and Gaussian noise, which theoretically reduces the required trajectory energy. To ensure this trajectory approximates a geodesic on the data manifold, we innovatively leverage a pretrained denoiser as a dynamic geodesic guidance field. To solve this process efficiently, we draw inspiration from consistency models to learn a single-step mapping function, optimized via a continuous-time consistency objective tailored for our trajectory, so as to analytically map any state on the trajectory to the target image. Notably, the trajectory length in our framework becomes a tunable task-adaptive knob, allowing the model to adaptively balance information preservation against generative power for tasks of varying degradation, such as denoising versus super-resolution. Extensive experiments demonstrate that our E-Bridge achieves state-of-the-art performance across various image restoration tasks, while enabling high-quality recovery with a single or fewer sampling steps.        </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Paper method. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Method</h2>
+		<div style="text-align: center; vertical-align:middle">
+		  <img src="static/images/Fig_strategy.jpg" width="800">
+		</div>
+		<div align="center">
+          <b>Illustration of diffusion processes for image restoration. </b>
+		</div>
+		<div class="content has-text-justified">
+		<p>
+		 (a) Standard Diffusion Models: These traverse a long, high-energy trajectory starting from pure Gaussian noise to the clean image manifold, conditioned on the degraded image, they generate all information from scratch. (b) Conventional Bridge Models: These construct a path from the degraded to the clean image but often follow a sub-optimal, high-energy trajectory that includes a redundant "re-noising" phase before denoising. (c) Ours E-Bridge: It starts the reverse process from an entropy-regularized point, which is a mixture of the degraded image and noise, thus bypassing the inefficient re-noising phase and creating a more direct and shorter path for restoration.
+		</p>
+		</div>
+      </div>
+    </div>
+    <!--/ Paper results. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Results</h2>
+        <div class="content has-text-justified">
+        <div style="text-align: center; vertical-align:middle">
+          <img src="static/images/visual_comparison.jpg" width="800">
+        </div>
+        <div align="center">
+          <b>Visual comparison of different methods across various tasks.</b>
+        </div>
+	    </div>
+	    </div>
+      </div>
+    </div>
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3"></h2>
+        <div class="content has-text-justified">
+        <div style="text-align: center; vertical-align:middle">
+          <img src="static/images/visual_realsr.jpg" width="730">
+        </div>
+        <div align="center">
+          <b>Visual results on image super-resolution in the wild.</b>
+        </div>
+	    </div>
+	    </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>   @inproceedings{hou26energy,
+      title={Energy-oriented Diffusion Bridge for Image Restoration with Foundational Diffusion Models},
+      author={Jinhui Hou, Zhiyu Zhu, and Junhui Hou},
+      booktitle={International Conference on Learning Representations},
+      year={2026}
+    }</code></pre>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website, adapted from the following <a href="https://github.com/nerfies/nerfies.github.io">source code</a>, is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Image Slider Javascripts -->
+<script src="static/js/juxtapose.js"></script>
+
+<!-- ==================== 修改后的 JavaScript ==================== -->
+<script>
+  // --- 全局变量 ---
+  let slider;
+  let currentPageIndex = 0;
+  let currentThumbnailIndex = 0;
+  const juxtaposeSelector = "#juxtapose-embed";
+
+  // --- 自动翻页相关变量 ---
+  let autoScrollInterval = null;
+  const AUTO_SCROLL_DELAY = 3000;
+
+  const pagesData = [
+    {
+      pageTitle: "General Restoration",
+      slides: [
+        { id: 'SR', title: 'SR', thumbSrc: 'static/images/SR_lq.png' },
+        { id: 'denoising', title: 'Denoising', thumbSrc: 'static/images/denoising_lq.png' },
+        { id: 'raindrop', title: 'Raindrop', thumbSrc: 'static/images/raindrop_lq.png' },
+        { id: 'llie22', title: 'Low-light', thumbSrc: 'static/images/llie22_lq.png' },
+        { id: 'desnowing', title: 'Demoiréing', thumbSrc: 'static/images/desnowing_lq.png' }
+      ]
+    },
+    {
+      pageTitle: "Advanced Tasks",
+      slides: [
+        { id: 'SR2', title: 'SR', thumbSrc: 'static/images/SR2_lq.png' },
+        { id: 'denoising3', title: 'Denoising', thumbSrc: 'static/images/denoising3_lq.png' },
+        { id: 'raindrop2', title: 'Raindrop', thumbSrc: 'static/images/raindrop2_lq.png' },
+        { id: 'llie2', title: 'Low-light', thumbSrc: 'static/images/llie2_lq.png' },
+        { id: 'desnowing2', title: 'Demoiréing', thumbSrc: 'static/images/desnowing2_lq.png' }
+      ]
+    },
+    {
+      pageTitle: "Advanced Tasks",
+      slides: [
+        { id: 'SR3', title: 'SR', thumbSrc: 'static/images/SR3_lq.png' },
+        { id: 'denoising2', title: 'Denoising', thumbSrc: 'static/images/denoising2_lq.png' },
+        { id: 'raindrop3', title: 'Raindrop', thumbSrc: 'static/images/raindrop3_lq.png' },
+        { id: 'llie3', title: 'Low-light', thumbSrc: 'static/images/llie3_lq.png' },
+        { id: 'desnowing3', title: 'Demoiréing', thumbSrc: 'static/images/desnowing3_lq.png' }
+      ]
+    }
+  ];
+
+  /**
+   * 当点击某个缩略图时调用
+   * @param {string} slideId - 幻灯片的ID
+   * @param {HTMLElement} clickedImgElement - 被点击的图片元素
+   * @param {number} slideIndex - 幻灯片在当前页面的索引
+   */
+  function selectThumbnail(slideId, clickedImgElement, slideIndex = -1) {
+    if (slideIndex !== -1) {
+      currentThumbnailIndex = slideIndex;
+    }
+    
+    document.querySelectorAll('#thumbnail-container img').forEach(img => img.classList.remove('selected'));
+    if (clickedImgElement) {
+      clickedImgElement.classList.add('selected');
+    }
+
+    const slideData = pagesData[currentPageIndex].slides.find(s => s.id === slideId);
+    if (!slideData) return;
+
+    const inputImage = { label: "Zoomed LQ", src: `static/images/${slideId}_lq.png` };
+    const outputImage = { label: "Ours", src: `static/images/${slideId}_hq.png` };
+    const images = [inputImage, outputImage];
+    
+    const options = {
+        "makeResponsive": true,
+        "showLabels": true,
+        "mode": "horizontal",
+        "showCredits": true,
+        "animate": false,
+        "startingPosition": "50"
+    };
+    
+    const juxtaposeContainer = document.getElementById(juxtaposeSelector.substring(1));
+    juxtaposeContainer.innerHTML = '';
+    slider = new juxtapose.JXSlider(juxtaposeSelector, images, options);
+  }
+
+  /**
+   * 显示指定页面的内容
+   */
+  function showPage(pageIndex) {
+    if (pageIndex < 0 || pageIndex >= pagesData.length) return;
+    currentPageIndex = pageIndex;
+    currentThumbnailIndex = 0;
+
+    const pageData = pagesData[pageIndex];
+    const thumbnailContainer = document.getElementById('thumbnail-container');
+    thumbnailContainer.innerHTML = '';
+
+    pageData.slides.forEach((slide, index) => {
+      const colDiv = document.createElement('div');
+      colDiv.className = 'tab_column';
+
+      const img = document.createElement('img');
+      img.src = slide.thumbSrc;
+      img.onclick = () => {
+        selectThumbnail(slide.id, img, index);
+        stopAutoScroll();
+      };
+
+      const span = document.createElement('span');
+      span.innerText = slide.title;
+
+      colDiv.appendChild(img);
+      colDiv.appendChild(span);
+      thumbnailContainer.appendChild(colDiv);
+    });
+
+    const dots = document.querySelectorAll('.dot');
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('active', i === pageIndex);
+    });
+
+    if (pageData.slides.length > 0) {
+      const firstSlideId = pageData.slides[0].id;
+      const firstImgElement = thumbnailContainer.querySelector('img');
+      selectThumbnail(firstSlideId, firstImgElement, 0);
+    }
+  }
+
+  /**
+   * 自动播放的核心逻辑函数
+   */
+  function autoAdvance() {
+    const currentPageData = pagesData[currentPageIndex];
+    if (!currentPageData || currentPageData.slides.length === 0) return;
+
+    const nextThumbnailIndex = currentThumbnailIndex + 1;
+
+    if (nextThumbnailIndex < currentPageData.slides.length) {
+      const nextSlide = currentPageData.slides[nextThumbnailIndex];
+      const allThumbImgs = document.querySelectorAll('#thumbnail-container img');
+      const nextImgElement = allThumbImgs[nextThumbnailIndex];
+      
+      selectThumbnail(nextSlide.id, nextImgElement, nextThumbnailIndex);
+
+    } else {
+      const nextPageIndex = (currentPageIndex + 1) % pagesData.length;
+      showPage(nextPageIndex);
+    }
+  }
+
+  /**
+   * 开始自动翻页
+   */
+  function startAutoScroll() {
+    // 确保不会创建多个计时器
+    if (autoScrollInterval) return; 
+    autoScrollInterval = setInterval(autoAdvance, AUTO_SCROLL_DELAY);
+  }
+
+  /**
+   * 停止自动翻页
+   */
+  function stopAutoScroll() {
+    clearInterval(autoScrollInterval);
+    autoScrollInterval = null; // 清除引用
+  }
+
+  /**
+   * 初始化函数
+   */
+  function initializeGallery() {
+    const dotsContainer = document.getElementById('pagination-dots');
+    pagesData.forEach((_, index) => {
+      const dot = document.createElement('span');
+      dot.classList.add('dot');
+      dot.onclick = () => {
+        if (currentPageIndex !== index) {
+            showPage(index);
+        }
+        stopAutoScroll();
+      };
+      dotsContainer.appendChild(dot);
+    });
+
+    showPage(0);
+  }
+
+  // 页面加载完成后执行
+  (function () {
+    initializeGallery();
+
+    // --- [MODIFIED] 自动播放交互逻辑 ---
+    // 为每个交互区域（主图、缩略图、圆点）分别添加事件监听器
+    // 鼠标进入则暂停，离开则恢复
+    const mainImage = document.getElementById('juxtapose-embed');
+    const thumbnails = document.getElementById('thumbnail-container');
+    const dots = document.getElementById('pagination-dots');
+
+    const interactiveElements = [mainImage, thumbnails, dots];
+
+    interactiveElements.forEach(el => {
+        if (el) {
+            el.addEventListener('mouseenter', stopAutoScroll);
+            el.addEventListener('mouseleave', startAutoScroll);
+        }
+    });
+    
+    startAutoScroll();
+
+    // 保留原有的flip-card交互逻辑
+    $(".flip-card").click(function () {
+      console.log("fading in")
+      const div_back = $(this).children().children()[1];
+      const div_front = $(this).children().children()[0];
+      $(div_front).addClass("out").removeClass("in");
+      $(div_back).addClass("in").removeClass("out");
+    });
+
+    $(".flip-card").mouseleave(function () {
+      console.log("fading out")
+      const div_back = $(this).children().children()[1];
+      const div_front = $(this).children().children()[0];
+      $(div_front).addClass("in").removeClass("out");
+      $(div_back).addClass("out").removeClass("in");
+    });
+  })();
+</script>
+
+</body>
+</html>
