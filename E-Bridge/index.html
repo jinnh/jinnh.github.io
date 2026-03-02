@@ -120,17 +120,18 @@
           <h1 class="title is-1 publication-title">Energy-oriented Diffusion Bridge for Image Restoration with Foundational Diffusion Models</h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
-              <a href="https://dblp.org/pid/213/4553.html">Jinhui Hou</a>,</span>
+              <a href="https://dblp.org/pid/213/4553.html">Jinhui Hou</a><sup>1</sup>,</span>
             <span class="author-block">
-              <a href="https://scholar.google.com/citations?user=d1L0KkoAAAAJ&hl=en">Zhiyu Zhu</a>,</span>
+              <a href="https://scholar.google.com/citations?user=d1L0KkoAAAAJ&hl=en">Zhiyu Zhu</a><sup>1, 2</sup>,</span>
             <span class="author-block">
-              <a href="https://sites.google.com/site/junhuihoushomepage/biography">Junhui Hou</a>
+              <a href="https://sites.google.com/site/junhuihoushomepage/biography">Junhui Hou</a><sup>1</sup>
             </span>
 
           </div>
 
           <div class="is-size-5 publication-authors">
-            <span class="author-block">City University of Hong Kong</span>
+            <span class="author-block"><sup>1</sup>City University of Hong Kong, </span>
+			<span class="author-block"><sup>2</sup>City University of Hong Kong (Dongguan)</span>
           </div>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
@@ -158,7 +159,7 @@
                 </a>
               </span> -->
               <span class="link-block">
-                <a href="https://github.com/jinnh"
+                <a href="https://github.com/jinnh/E-Bridge"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-github"></i>
@@ -210,7 +211,7 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Diffusion bridge models have shown great promise in image restoration by explicitly connecting clean and degraded image distributions. However, they often rely on complex and high-cost trajectories, which limit both sampling efficiency and final restoration quality. To address this, we propose an Energy-oriented diffusion Bridge (E-Bridge) framework to construct a set of low-cost manifold geodesic trajectories to boost the performance of the proposed method. We achieve this by designing a novel bridge process that evolves over a shorter time horizon and makes the reverse process start from an entropy-regularized point that mixes the degraded image and Gaussian noise, which theoretically reduces the required trajectory energy. To ensure this trajectory approximates a geodesic on the data manifold, we innovatively leverage a pretrained denoiser as a dynamic geodesic guidance field. To solve this process efficiently, we draw inspiration from consistency models to learn a single-step mapping function, optimized via a continuous-time consistency objective tailored for our trajectory, so as to analytically map any state on the trajectory to the target image. Notably, the trajectory length in our framework becomes a tunable task-adaptive knob, allowing the model to adaptively balance information preservation against generative power for tasks of varying degradation, such as denoising versus super-resolution. Extensive experiments demonstrate that our E-Bridge achieves state-of-the-art performance across various image restoration tasks, while enabling high-quality recovery with a single or fewer sampling steps.        </p>
+            Diffusion bridge models have shown great promise in image restoration by explicitly connecting clean and degraded image distributions. However, they often rely on complex and high-cost trajectories, which limit both sampling efficiency and final restoration quality. To address this, we propose an Energy-oriented diffusion Bridge (E-Bridge) framework to approximate a set of low-cost manifold geodesic trajectories to boost the performance of the proposed method. We achieve this by designing a novel bridge process that evolves over a shorter time horizon and makes the reverse process start from an entropy-regularized point that mixes the degraded image and Gaussian noise, which theoretically reduces the required trajectory energy. To solve this process efficiently, we draw inspiration from consistency models to learn a single-step mapping function, optimized via a continuous-time consistency objective tailored for our trajectory, so as to analytically map any state on the trajectory to the target image. Notably, the trajectory length in our framework becomes a tunable task-adaptive knob, allowing the model to adaptively balance information preservation against generative power for tasks of varying degradation, such as denoising versus super-resolution. Extensive experiments demonstrate that our E-Bridge achieves state-of-the-art performance across various image restoration tasks while enabling high-quality recovery with a single or fewer sampling steps.         </p>
         </div>
       </div>
     </div>
